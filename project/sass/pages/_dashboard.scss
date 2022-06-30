@@ -1,0 +1,25 @@
+.dashboard {
+    // take all available space
+    height: 100%;
+    width: 100%;
+
+    // padding all around
+    padding: 1rem;
+
+    // make a grid of 16 by 16
+    display: grid;
+    grid-template-rows: repeat(2, min-content) minmax(0, 1fr);
+    grid-gap: 2rem;
+
+    &__header {
+
+    }
+    
+    &__sub-header {
+
+    }
+
+    &__context-tabs {
+        
+    }
+}

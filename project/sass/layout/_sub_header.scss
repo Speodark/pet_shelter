@@ -1,0 +1,6 @@
+.sub_header{
+    display: grid;
+    grid-template-columns: repeat(5,minmax(0,1fr));
+    border: 2px solid #DDE4EB;
+    padding: 1rem;
+}
