@@ -1,6 +1,23 @@
-.sub_header{
+.sub-header{
     display: grid;
     grid-template-columns: repeat(5,minmax(0,1fr));
     border: 2px solid #DDE4EB;
     padding: 1rem;
+    grid-gap: 1rem;
+
+    &__animal-count {
+        grid-column: 1/2;
+    }
+
+    &__adopted {
+        grid-column: 2/3;
+    }
+
+    &__gender {
+        grid-column: 4/5;
+    }
+
+    &__castrated {
+        grid-column: 5/6;
+    }
 }

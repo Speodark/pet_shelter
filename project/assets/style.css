@@ -40,7 +40,7 @@ body {
 
 .container {
   height: 100vh;
-  background-color: #FFF; }
+  background-color: #F3F3F3; }
 
 .center_items_vertical {
   display: flex;
@@ -50,6 +50,12 @@ body {
 .fill-parent-div {
   width: 100%;
   height: 100%; }
+
+.hide {
+  display: none; }
+
+.invisible {
+  opacity: 0; }
 
 .card {
   background-color: #fff;
@@ -106,13 +112,9 @@ body {
     .binary-filter__item--1 {
       background-color: pink;
       border-radius: 2.5rem 0px 0px 2.5rem; }
-      .binary-filter__checkbox:checked ~ .binary-filter__item--1 {
-        filter: blur(0.15rem); }
     .binary-filter__item--2 {
-      background-color: blue;
+      background-color: #2B80FF;
       border-radius: 0px 2.5rem 2.5rem 0px; }
-      .binary-filter__checkbox:not(:checked) ~ .binary-filter__item--2 {
-        filter: blur(1rem); }
   .binary-filter__slider {
     position: absolute;
     width: 50%;
@@ -135,16 +137,53 @@ body {
   .header__export {
     flex: 1; }
 
-.sub_header {
+.sub-header {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   border: 2px solid #DDE4EB;
-  padding: 1rem; }
+  padding: 1rem;
+  grid-gap: 1rem; }
+  .sub-header__animal-count {
+    grid-column: 1/2; }
+  .sub-header__adopted {
+    grid-column: 2/3; }
+  .sub-header__gender {
+    grid-column: 4/5; }
+  .sub-header__castrated {
+    grid-column: 5/6; }
 
 .dashboard {
   height: 100%;
   width: 100%;
-  padding: 1rem;
+  padding: 2rem;
   display: grid;
   grid-template-rows: repeat(2, min-content) minmax(0, 1fr);
   grid-gap: 2rem; }
+  .dashboard__header {
+    grid-row: 1/2; }
+  .dashboard__sub-header {
+    grid-row: 2/3; }
+  .dashboard__tabs {
+    font-size: 1.8rem;
+    grid-row: 3/4; }
+    .dashboard__tabs .tab-content,
+    .dashboard__tabs .tab-parent {
+      height: 100%; }
+    .dashboard__tabs .tab-content {
+      min-height: 0; }
+  .dashboard__overview {
+    padding-top: 1rem;
+    display: grid;
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-gap: 1rem;
+    height: 100%; }
+    .dashboard__overview--outcome {
+      grid-column: 1/4;
+      grid-row: 1/4; }
+    .dashboard__overview--animal-type {
+      grid-column: 4/7;
+      grid-row: 1/4; }
+    .dashboard__overview--outcome-time {
+      grid-column: 1/-1;
+      grid-row: 4/-1; }

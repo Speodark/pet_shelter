@@ -27,17 +27,10 @@
         &--1 {
             background-color: pink;
             border-radius: 2.5rem 0px 0px 2.5rem;
-            .binary-filter__checkbox:checked ~ & {
-                filter: blur(0.15rem);
-            }
-            
         }
         &--2 {
-            background-color: blue;
+            background-color: #2B80FF;
             border-radius: 0px 2.5rem 2.5rem 0px;
-            .binary-filter__checkbox:not(:checked) ~ & {
-                filter: blur(1rem);
-            }
         }
     }
 

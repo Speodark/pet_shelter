@@ -4,7 +4,7 @@
     width: 100%;
 
     // padding all around
-    padding: 1rem;
+    padding: 2rem;
 
     // make a grid of 16 by 16
     display: grid;
@@ -12,14 +12,49 @@
     grid-gap: 2rem;
 
     &__header {
-
+        grid-row: 1/2;
     }
-    
+
     &__sub-header {
-
+        grid-row: 2/3;
     }
 
-    &__context-tabs {
+    &__tabs{
+        font-size: 1.8rem;
+        grid-row: 3/4;
         
+
+        .tab-content,
+        .tab-parent {
+            height: 100%;
+        }
+
+        .tab-content {
+            min-height: 0;
+        }
     }
+
+
+
+    &__overview {
+        padding-top: 1rem;
+        display: grid;
+        grid-template-rows: repeat(6, minmax(0,1fr));
+        grid-template-columns: repeat(8, minmax(0,1fr));
+        grid-gap: 1rem;
+        height: 100%;
+        &--outcome {
+            grid-column: 1/4;
+            grid-row: 1/4;
+        }
+        &--animal-type{
+            grid-column: 4/7;
+            grid-row: 1/4;
+        }
+        &--outcome-time {
+            grid-column: 1/-1;
+            grid-row: 4/-1;
+        }
+    }
+
 }

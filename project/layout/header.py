@@ -2,9 +2,9 @@ from dash import html, dcc
 from datetime import datetime as dt
 import dash_datetimepicker
 
-def header():
+def header(className = ''):
     return html.Div(
-        className = 'header',
+        className = 'header ' + className,
         children=[
             dcc.DatePickerRange(
                 id='my-date-picker-range',  # ID to be used for callback
