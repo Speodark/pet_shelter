@@ -46,6 +46,20 @@ def overview_tab():
                 className="dashboard__overview--outcome-time"
             ),
             # Age slider
+            html.Div(
+                children=[
+                    html.Span("Age Range"),
+                    dcc.RangeSlider(
+                        min=0,
+                        max=20,
+                        step=1,
+                        value=[5,15],
+                        id='ranger', 
+                        className="dashboard__overview--age-range__slider"
+                    )
+                ],
+                className="dashboard__overview--age-range"
+            )
             
         ],
         className='dashboard__overview'
