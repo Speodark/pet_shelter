@@ -20,30 +20,45 @@ def overview_tab():
     return html.Div(
         children=[
             # Outcome graph
-            dcc.Graph(
-                figure=horizontal_bar_chart(
-                    [20,30,40],
-                    ["hello love here","dear","guy"]
+            card(
+                header='Outcome',
+                children=dcc.Graph(
+                    figure=horizontal_bar_chart(
+                        [20,30,40],
+                        ["hello love here","dear","guy"],
+                    ),
+                    responsive=True, 
+                    className="fill-parent-div sm-padding",
                 ),
-                className="dashboard__overview--outcome"
+                className="dashboard__overview--outcome center_items_vertical"
             ),
             # Animal Type graph
-            dcc.Graph(
-                figure=horizontal_bar_chart(
-                    [20,30,40],
-                    ["hello love here","dear","guy"]
+            card(
+                header='Animal Type',
+                children=dcc.Graph(
+                    figure=horizontal_bar_chart(
+                        [20,30,40],
+                        ["hello love here","dear","guy"]
+                    ),
+                    responsive=True, 
+                    className="fill-parent-div sm-padding",
                 ),
-                className="dashboard__overview--animal-type"
+                className="dashboard__overview--animal-type center_items_vertical"
             ),
             # Animal Type graph
-            dcc.Graph(
-                figure=stacked_bar_chart(
-                    df = temp_df,
-                    x_axis = 'date',
-                    y_axis='value',
-                    category='outcome'
+            card(
+                header='Amount of outcome by Type and Date',
+                children=dcc.Graph(
+                    figure=stacked_bar_chart(
+                        df = temp_df,
+                        x_axis = 'date',
+                        y_axis='value',
+                        category='outcome'
+                    ),
+                    responsive=True, 
+                    className="fill-parent-div sm-padding",
                 ),
-                className="dashboard__overview--outcome-time"
+                className="dashboard__overview--outcome-time center_items_vertical"
             ),
             # Age slider
             html.Div(
