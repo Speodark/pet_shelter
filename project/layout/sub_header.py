@@ -19,11 +19,13 @@ def sub_header(className=''):
             binary_filter(
                 id = 'gender',
                 categories=["Men",'Female'],
+                colors=['pink','#2B80FF'],
                 className="sub-header__gender"
             ),
             binary_filter(
                 id = 'castrated',
-                categories=["Men",'Female'],
+                categories=["Yes",'No'],
+                colors=['green','red'],
                 className="sub-header__castrated"
             )
         ]

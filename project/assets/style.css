@@ -60,6 +60,24 @@ body {
 .invisible {
   opacity: 0; }
 
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px; }
+  .arrow__right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg); }
+  .arrow__left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg); }
+  .arrow__up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg); }
+  .arrow__down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg); }
+
 .card {
   background-color: #fff;
   height: 100%;
@@ -113,12 +131,11 @@ body {
     font-size: 1.8rem;
     font-weight: 600;
     display: grid;
-    place-items: center; }
+    place-items: center;
+    cursor: pointer; }
     .binary-filter__item--1 {
-      background-color: pink;
       border-radius: 2.5rem 0px 0px 2.5rem; }
     .binary-filter__item--2 {
-      background-color: #2B80FF;
       border-radius: 0px 2.5rem 2.5rem 0px; }
   .binary-filter__slider {
     position: absolute;
@@ -141,7 +158,20 @@ body {
     font-weight: 700; }
   .header__export {
     flex: 1;
-    width: 10rem; }
+    display: grid;
+    place-items: end; }
+    .header__export--btn {
+      padding: 0.8rem 1.4rem;
+      font-size: 1.6rem;
+      background-color: #DDE4EB;
+      border: none;
+      display: flex;
+      align-items: center; }
+      .header__export--btn:hover {
+        border: 1px solid #2B80FF; }
+    .header__export--arrow {
+      border-color: #2B80FF;
+      margin-left: 0.6rem; }
   .header .DateInput_input {
     padding: 11px 6px 9px; }
 

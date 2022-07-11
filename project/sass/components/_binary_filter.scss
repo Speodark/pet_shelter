@@ -23,13 +23,11 @@
         font-weight: 600;
         display: grid;
         place-items: center;
-        
+        cursor: pointer;
         &--1 {
-            background-color: pink;
             border-radius: 2.5rem 0px 0px 2.5rem;
         }
         &--2 {
-            background-color: #2B80FF;
             border-radius: 0px 2.5rem 2.5rem 0px;
         }
     }

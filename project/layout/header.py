@@ -33,6 +33,16 @@ def header(className = ''):
                 className='header__date-picker-range'
             ),
             html.P(children='Animal Shelter', className='header__title'),
-            html.Button(children='Export',className='header__export')
+            html.Div(
+                children=html.Button(
+                    children=[
+                        html.Span('Export'),
+                        html.Span(className='arrow arrow__down header__export--arrow')
+                    ],
+                    className='header__export--btn'
+                ),
+                className='header__export'
+            )
+            
         ]
     )
