@@ -10,7 +10,7 @@ import pandas as pd
 
 
 # The overview tab 
-def overview_tab():
+def overview_tab(df):
     temp_df = {
         'outcome':['Transfer','adoption','Transfer','adoption','Transfer','adoption'],
         'date':['15/5/2002','18/9/2020','12/10/2015','15/5/2002','18/9/2020','12/10/2015'],
@@ -82,14 +82,14 @@ def overview_tab():
 
 
 # All the tabs
-def tabs():
+def tabs(df):
     return html.Div(
         children=dcc.Tabs(
             children=[
                 # First content page
                 dcc.Tab(
                     label="OverView",
-                    children=overview_tab()
+                    children=overview_tab(df)
                 ),
                 # Drilldown Page
                 dcc.Tab(
@@ -106,11 +106,18 @@ def tabs():
 
 
 def dashboard():
+    df = vaex.open('assets/data/data.hdf5')
     return html.Div(
         className='dashboard',
         children=[
-            header(className='dashboard__header'),
-            sub_header(className='dashboard__sub-header'),
-            tabs()
+            header(
+                df = df,
+                className='dashboard__header'
+            ),
+            sub_header(
+                df = df,
+                className='dashboard__sub-header'
+            ),
+            tabs(df)
         ]
     )

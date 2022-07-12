@@ -2,18 +2,18 @@ from dash import html
 from components.kpi import kpi
 from components.binary_filter import binary_filter
 
-def sub_header(className=''):
+def sub_header(df, className=''):
     return html.Div(
         className = 'sub-header ' + className,
         children=[
             kpi(
                 text='Animal Count', 
-                value='70,535',
+                value=len(df),
                 className='sub-header__animal-count'
             ),
             kpi(
                 text='Adopted', 
-                value='22,050',
+                value=len(df[df.outcome_type == 'Adoption']),
                 className='sub-header__adopted'
             ),
             binary_filter(

@@ -3,14 +3,48 @@ import pandas as pd
 import numpy as np
 import re
 import plotly.figure_factory as ff
+import plotly.io as pio
+pio.renderers.default = 'browser'
 
-df = pd.read_csv('aac_shelter_outcomes.csv')
+df = pd.read_csv('aac_shelter_outcomes.csv',parse_dates=['date_of_birth', 'datetime'])
 df = df.drop_duplicates()
+# get rid of unknown gender 
+df = df.replace('Unknown', np.nan, regex=True)
+
+
+# making the gender column
+df = df[df['sex_upon_outcome'].notna()]
+sex = []
+for sex_upon_outcome in df.sex_upon_outcome:
+    if 'Male' in sex_upon_outcome:
+        sex.append('Male')
+    elif 'Female' in sex_upon_outcome:
+        sex.append('Female')
+    else:
+        notin.append(sex_upon_outcome)
+df['sex'] = sex
+
+# making the castrated column
+castrated = []
+for sex_upon_outcome in df.sex_upon_outcome:
+    if 'neutered' in sex_upon_outcome.lower() or 'spayed' in sex_upon_outcome.lower():
+        castrated.append(True)
+    elif 'intact' in sex_upon_outcome.lower():
+        castrated.append(False)
+    else:
+        print(sex_upon_outcome)
+df['castrated'] = castrated
+
+df = df.drop(['monthyear', 'sex_upon_outcome'], axis=1)
+df.to_csv('data.csv')
+df2 = vaex.from_csv('data.csv', convert=True, chunk_size=5_000_000)
+
+
 df['got_to_shelter_year'] = df.age_upon_outcome.copy()
 df = df[df['age_upon_outcome'].notna()]
-
+df_adopted = df[df['outcome_type'] == 'Adoption']
 # make the age_upon_outcome
-temp = df.age_upon_outcome
+temp = df_adopted.age_upon_outcome
 years = []
 for came_to_shelter in df.age_upon_outcome:
     if 'weeks' in came_to_shelter or 'week' in came_to_shelter:
@@ -42,9 +76,6 @@ for came_to_shelter in df.age_upon_outcome:
             )
         )
  
-hist_data = [x]
-group_labels = ['distplot']
-print(df.outcome_type.unique())
 
-fig = ff.create_distplot(hist_data, group_labels)
+fig = ff.create_distplot([years], ['distplot'])
 fig.show()

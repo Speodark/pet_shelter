@@ -2,7 +2,7 @@ from dash import html, dcc
 from datetime import datetime as dt
 import dash_datetimepicker
 
-def header(className = ''):
+def header(df, className = ''):
     return html.Div(
         className = 'header ' + className,
         children=[
