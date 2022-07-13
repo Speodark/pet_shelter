@@ -63,12 +63,12 @@ def overview_tab(df):
             # Age slider
             html.Div(
                 children=[
-                    html.Span("Age Range"),
+                    html.Span("Age upon outcome Range"),
                     dcc.RangeSlider(
-                        min=0,
-                        max=20,
+                        min=int(df.age_upon_outcome.min()),
+                        max=int(df.age_upon_outcome.max()),
                         step=1,
-                        value=[5,15],
+                        value=[int(df.age_upon_outcome.min()),int(df.age_upon_outcome.max())],
                         id='ranger', 
                         className="dashboard__overview--age-range__slider"
                     )
