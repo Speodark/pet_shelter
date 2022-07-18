@@ -7,7 +7,7 @@ from layout.sub_header import sub_header
 from components.horizontal_bar_chart import horizontal_bar_chart
 from components.stacked_bar_chart import stacked_bar_chart
 import pandas as pd
-
+import numpy as np
 
 # The overview tab 
 def overview_tab(df):
@@ -17,6 +17,12 @@ def overview_tab(df):
         'value':[40,20,30,40,10,30]
     }
     temp_df = pd.DataFrame(temp_df)
+    outcome = df.groupby(['outcome_type'],agg='count').to_pandas_df()
+    outcome = outcome.sort_values(by=['count'])
+    animal_type = df.groupby(['animal_type'],agg='count').to_pandas_df()
+    animal_type = animal_type.sort_values(by=['count'])
+    outcome_type_date = df.groupby(['outcome_type','datetime'],agg='count').to_pandas_df()
+    outcome_type_date = outcome_type_date.replace(np.nan,'Unknown', regex=True)
     return html.Div(
         children=[
             # Outcome graph
@@ -24,8 +30,8 @@ def overview_tab(df):
                 header='Outcome',
                 children=dcc.Graph(
                     figure=horizontal_bar_chart(
-                        [20,30,40],
-                        ["hello love here","dear","guy"],
+                        categories=outcome['outcome_type'],
+                        values=outcome['count'],
                     ),
                     responsive=True, 
                     className="fill-parent-div sm-padding",
@@ -37,8 +43,8 @@ def overview_tab(df):
                 header='Animal Type',
                 children=dcc.Graph(
                     figure=horizontal_bar_chart(
-                        [20,30,40],
-                        ["hello love here","dear","guy"]
+                        categories=animal_type['animal_type'],
+                        values=animal_type['count'],
                     ),
                     responsive=True, 
                     className="fill-parent-div sm-padding",
@@ -50,10 +56,10 @@ def overview_tab(df):
                 header='Amount of outcome by Type and Date',
                 children=dcc.Graph(
                     figure=stacked_bar_chart(
-                        df = temp_df,
-                        x_axis = 'date',
-                        y_axis='value',
-                        category='outcome'
+                        df = outcome_type_date,
+                        x_axis = 'datetime',
+                        y_axis='count',
+                        category='outcome_type'
                     ),
                     responsive=True, 
                     className="fill-parent-div sm-padding",

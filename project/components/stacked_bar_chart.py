@@ -5,7 +5,6 @@ def stacked_bar_chart(df, x_axis, y_axis, category):
     # x_labels = []
     # for label in categories:
     #     x_labels.append(label.replace(' ', '<br>'))
-
     fig = px.bar(
         df,
         x=x_axis,

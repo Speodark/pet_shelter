@@ -1,13 +1,14 @@
 from dash import html, dcc
 from datetime import datetime as dt
-import dash_datetimepicker
+import pandas as pd
 
 def header(df, className = ''):
+    min_date, max_date = pd.to_datetime(df['datetime'].min()), pd.to_datetime(df['datetime'].max())
     return html.Div(
         className = 'header ' + className,
         children=[
             dcc.DatePickerRange(
-                id='my-date-picker-range',  # ID to be used for callback
+                id='date-range',  # ID to be used for callback
                 calendar_orientation='horizontal',  # vertical or horizontal
                 day_size=39,  # size of calendar image. Default is 39
                 end_date_placeholder_text="Return",  # text that appears when no end date chosen
@@ -17,11 +18,11 @@ def header(df, className = ''):
                 is_RTL=False,  # True or False for direction of calendar
                 clearable=True,  # whether or not the user can clear the dropdown
                 number_of_months_shown=2,  # number of months shown when calendar is open
-                min_date_allowed=dt(2018, 1, 1),  # minimum date allowed on the DatePickerRange component
-                max_date_allowed=dt(2020, 6, 20),  # maximum date allowed on the DatePickerRange component
-                initial_visible_month=dt(2020, 5, 1),  # the month initially presented when the user opens the calendar
-                start_date=dt(2018, 8, 7).date(),
-                end_date=dt(2020, 5, 15).date(),
+                min_date_allowed=min_date,  # minimum date allowed on the DatePickerRange component
+                max_date_allowed=max_date,  # maximum date allowed on the DatePickerRange component
+                initial_visible_month=max_date,  # the month initially presented when the user opens the calendar
+                start_date=min_date.date(),
+                end_date=max_date.date(),
                 display_format='MMM Do, YY',  # how selected dates are displayed in the DatePickerRange component.
                 month_format='MMMM, YYYY',  # how calendar headers are displayed when the calendar is opened.
                 minimum_nights=2,  # minimum number of days between start and end date

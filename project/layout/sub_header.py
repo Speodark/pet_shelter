@@ -17,16 +17,16 @@ def sub_header(df, className=''):
                 className='sub-header__adopted'
             ),
             binary_filter(
-                id = 'gender',
-                categories=["Men",'Female'],
+                id = 'sex',
+                categories=['Male','Female'],
                 colors=['pink','#2B80FF'],
-                className="sub-header__gender"
+                className='sub-header__gender'
             ),
             binary_filter(
                 id = 'castrated',
-                categories=["Yes",'No'],
+                categories=['True','False'],
                 colors=['green','red'],
-                className="sub-header__castrated"
+                className='sub-header__castrated'
             )
         ]
     )

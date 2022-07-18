@@ -44,7 +44,6 @@ def binary_filter(id, categories, colors, className = ''):
 def binary_filter_callback(_, active_filter, styles):
     triggered_category = ctx.triggered_id['index']
     categories_indexs = [category['id']['index'] for category in dash.callback_context.inputs_list[0]]
-    print(triggered_category, active_filter)
     if triggered_category in active_filter:
         for ind in range(len(styles)):
             styles[ind]['filter'] = ['none']
