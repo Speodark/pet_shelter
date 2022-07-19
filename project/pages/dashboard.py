@@ -11,12 +11,6 @@ import numpy as np
 
 # The overview tab 
 def overview_tab(df):
-    temp_df = {
-        'outcome':['Transfer','adoption','Transfer','adoption','Transfer','adoption'],
-        'date':['15/5/2002','18/9/2020','12/10/2015','15/5/2002','18/9/2020','12/10/2015'],
-        'value':[40,20,30,40,10,30]
-    }
-    temp_df = pd.DataFrame(temp_df)
     outcome = df.groupby(['outcome_type'],agg='count').to_pandas_df()
     outcome = outcome.sort_values(by=['count'])
     animal_type = df.groupby(['animal_type'],agg='count').to_pandas_df()
@@ -35,6 +29,7 @@ def overview_tab(df):
                     ),
                     responsive=True, 
                     className="fill-parent-div sm-padding",
+                    id = {'type':'bar_chart','id':'outcome_type'}
                 ),
                 className="dashboard__overview--outcome center_items_vertical"
             ),
@@ -48,6 +43,7 @@ def overview_tab(df):
                     ),
                     responsive=True, 
                     className="fill-parent-div sm-padding",
+                    id = {'type':'bar_chart','id':'animal_type'}
                 ),
                 className="dashboard__overview--animal-type center_items_vertical"
             ),
